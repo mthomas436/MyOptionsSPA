@@ -1,0 +1,98 @@
+<div class="row pl-3 pr-3 pt-4 pb-4">
+    <div class="col">
+      <table class="table table-bordered  bg-light">
+        <tr>
+          <td><strong>Option Type</strong></td>
+        </tr>
+        <tr>
+          <td>{{option.optionTypeDesc}}</td>
+        </tr>         
+        <tr>
+          <td><strong>Expiration Date</strong></td>
+        </tr>  
+        <tr>
+          <td>{{option.expirationDate | date}}</td>
+        </tr>      
+ 
+        <tr>
+          <td><strong>Strike</strong></td>
+        </tr>
+        <tr>
+          <td>{{option.strikePrice}}</td>
+        </tr> 
+        <tr>
+          <td><strong>Quantity</strong></td>
+        </tr>
+        <tr>
+          <td>{{option.quantity}}</td>
+        </tr>                        
+      </table>
+    </div> 
+    <div class="col">
+        <table class="table table-bordered">
+            <tr>
+              <td><strong>Cost of Option</strong></td>
+            </tr>  
+            <tr>
+              <td>{{option.optionCost | currency}}</td>
+            </tr>      
+            <tr>
+              <td><strong>Commission</strong></td>
+            </tr>
+            <tr>
+              <td>{{option.commission | currency}}</td>
+            </tr>  
+            <tr>
+              <td><strong>Stock Price at Purchase</strong></td>
+            </tr>
+            <tr>
+              <td>{{option.stockPriceatPurchace | currency}}&nbsp;</td>
+            </tr>       
+            <tr>
+              <td><strong>Date Entered</strong></td>
+            </tr>
+            <tr>
+              <td>{{option.dateEntered | date}}</td>
+            </tr>                      
+          </table>
+    </div>
+    <div class="col">
+        <table class="table table-bordered bg-light">
+            <tr>
+              <td><strong>Option Cost</strong></td>
+            </tr>
+            <tr>
+              <td>{{option.optionCost | currency}}&nbsp;</td>
+            </tr>           
+            <tr>
+              <td><strong>Exit Price</strong></td>
+            </tr>  
+            <tr>
+              <td>{{option.exitPrice | currency}}&nbsp;</td>
+            </tr>      
+ 
+            <tr>
+              <td><strong>Closing Price</strong></td>
+            </tr>
+            <tr>
+              <td>{{option.closingTotalPrice | currency}}&nbsp;</td>
+            </tr>       
+            <tr>
+              <td><strong>Profit / Loss</strong></td>
+            </tr>
+            <tr>
+              <td>{{option.profitLoss | currency}}&nbsp;</td>
+            </tr>                      
+          </table>      
+    </div>
+    
+</div>    
+
+<div class="pl-3 pr-3 pt-4 pb-4">
+  <div class="row">
+    <div class="col"><strong>Comments</strong></div>
+  </div> 
+  <div class="row">
+      <div class="col">{{option.notes}}</div>
+  </div> 
+</div> 

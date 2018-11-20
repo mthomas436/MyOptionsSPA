@@ -1,0 +1,98 @@
+<div class="container py-3">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="mb-0">Add Option</h4>
+        </div>
+        <div class="card-body">
+            <form class="form" role="form" autocomplete="off" [formGroup]="optionForm">
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Strike Price</label>
+                    <div class="col-lg-9">
+                        <input 
+                            [ngClass]="{'is-invalid': optionForm.get('strikePrice').errors && optionForm.get('strikePrice').touched}" 
+                            class="form-control" 
+                            type="text" 
+                            formControlName="strikePrice" 
+                            placeholder="Strike Price">
+                        <div class="invalid-feedback">Strike Price is required</div>                    
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Expiration Date</label>
+                    <div class="col-lg-9">
+                        <input  bsDatepicker formControlName="expirationDate"  
+                        [ngClass]="{'is-invalid': optionForm.get('expirationDate').errors && optionForm.get('expirationDate').touched}"  
+                                class="form-control col-6" type="text" placeholder="Expiration Date">
+                        <div class="invalid-feedback">Expiration Date is required</div> 
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Option Type</label>
+                    <div class="col-lg-9">
+                        <select
+                            [ngClass]="{'is-invalid': optionForm.get('optionTypeId').errors && optionForm.get('optionTypeId').touched}"  
+                            formControlName="optionTypeId" 
+                            class="form-control">
+                            <option value="1">Call</option>
+                            <option value="2">Put</option>
+                        </select>
+                        <div class="invalid-feedback">Option Type is required</div> 
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Quantity</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" 
+                               [ngClass]="{'is-invalid': optionForm.get('quantity').errors && optionForm.get('quantity').touched}"  
+                               formControlName="quantity" type="text" placeholder="Quantity">
+                        <div class="invalid-feedback">Quantity is required</div> 
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Entry Price</label>
+                    <div class="col-lg-9">
+                        <input [ngClass]="{'is-invalid': optionForm.get('entryPrice').errors && optionForm.get('entryPrice').touched}" 
+                                class="form-control" formControlName="entryPrice" placeholder="Entry Price">
+                        <div *ngIf="optionForm.get('entryPrice').hasError('required') && optionForm.get('entryPrice').touched" 
+                             class="invalid-feedback">Entry Price is required and must be numeric</div> 
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Stock Price at Purchase</label>
+                    <div class="col-lg-9">
+                        <input [ngClass]="{'is-invalid': optionForm.get('stockPriceatPurchace').errors && optionForm.get('stockPriceatPurchace').touched}" 
+                                class="form-control" formControlName="stockPriceatPurchace" placeholder="Stock Price at Purchase">
+                        <div class="invalid-feedback">Stock Price at Purchase must be numeric</div> 
+                    </div>
+                </div>                
+
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Commission</label>
+                    <div class="col-lg-9">
+                        <input  [ngClass]="{'is-invalid': optionForm.get('commission').errors && optionForm.get('commission').touched}" 
+                                class="form-control" formControlName="commission" placeholder="Commission">                                             
+                        <div class="invalid-feedback">Comission should be numeric</div> 
+                    </div>
+                </div>                 
+
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Notes</label>
+                    <div class="col-lg-9">
+                        <textarea class="form-control" formControlName="notes" placeholder="Notes"></textarea>
+                    </div>
+                </div>                
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                    <div class="col-lg-9">
+                        <input type="hidden" name="tradeid" formControlName="tradeid">  
+                        <input (click)="closeAddForm(false)" type="reset" class="btn btn-danger mr-2" value="Cancel">
+                        <button  class="btn btn-primary" (click)="addOption()">Add Option</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>   
+</div>
+ 

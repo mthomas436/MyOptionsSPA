@@ -1,3 +1,4 @@
+import { OptionEditComponent } from './trades/option-edit/option-edit.component';
 import { EdituserComponent } from './users/edituser/edituser.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Routes } from '@angular/router';
@@ -10,6 +11,7 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { TradeDetailResolver } from './_resolvers/trade-detail.resolver';
 import { MemberTradesComponent } from './trades/member-trades/member-trades.component';
+import { OptionDetailResolver } from './_resolvers/option-detail.resolver';
 
 
 
@@ -22,7 +24,12 @@ export const appRoutes: Routes = [
     children: [
       { path: 'users', component: UserListComponent},
       { path: 'trades', component: TradeListComponent},
-      { path: 'optionlist/:tradeid', component: OptionListComponent, resolve: {trade: TradeDetailResolver}},
+      { path: 'optionlist/:tradeid', component: OptionListComponent,
+               resolve: {trade: TradeDetailResolver},
+               runGuardsAndResolvers: 'always'},
+      { path: 'editoption/:optionid', component: OptionEditComponent,
+               resolve: {option: OptionDetailResolver},
+               runGuardsAndResolvers: 'always'},
       { path: 'membertrades', component: MemberTradesComponent},
       { path: 'user/edit', component: EdituserComponent},
       { path: 'dashboard', component: DashboardComponent},

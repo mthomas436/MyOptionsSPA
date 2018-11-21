@@ -119,16 +119,5 @@ namespace MyOptions.API.Models
             }
         }
 
-
-        [NotMapped]
-        [Display(Name = "Option Type Desc")]
-        public string OptionTypeDesc
-        {
-            get
-            {
-                return this.OptionType.Description.ToString();
-            }
-        }        
-    
     }
 }

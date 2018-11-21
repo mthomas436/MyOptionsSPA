@@ -46,6 +46,24 @@ namespace MyOptions.API.Controllers
         }
 
 
+        [HttpGet("getoption/{optionid}", Name = "GetOption")]
+        public async Task<IActionResult> GetOption(int? optionid)
+        {
+            if (optionid == null)
+            {
+                return NotFound();
+            }
+
+            var option = await _repo.GetOption(optionid.Value);
+            if (option == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(option);
+        }
+
+
 
         [HttpPost("addoption",Name="AddOption")]
         public async Task<IActionResult> AddOption(Option option)

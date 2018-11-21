@@ -87,6 +87,8 @@ export class TradeListComponent implements OnInit {
       }, error => {
         this.alertify.error(error);
       });
+
+      this.tradeForm.reset();
     }
   }
 

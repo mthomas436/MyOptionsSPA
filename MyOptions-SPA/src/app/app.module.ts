@@ -1,3 +1,4 @@
+import { OptionDetailResolver } from './_resolvers/option-detail.resolver';
 import { OptionAddComponent } from './trades/option-add/option-add.component';
 import { AddTradeComponent } from './trades/add-trade/add-trade.component';
 import { OptionEditComponent } from './trades/option-edit/option-edit.component';
@@ -66,7 +67,6 @@ export function jwtOptionsFactory() {
       OptionListComponent,
       OptionDetailComponent,
       OptionEditComponent,
-      AddTradeComponent,
       OptionAddComponent
 
    ],
@@ -95,6 +95,7 @@ export function jwtOptionsFactory() {
       TradeService,
       UserService,
       TradeDetailResolver,
+      OptionDetailResolver,
       UserEditResolver,
       DatePipe,
       {provide: LocationStrategy, useClass: HashLocationStrategy}

@@ -2,7 +2,7 @@
   <h1>{{trade.stockSymbol}} {{trade.dateEntered | date}}</h1>
   <div>{{trade.description}}</div>
 </div>
-
+<hr>
 <div class="row mt-3">
   <div class="col">
     <strong>Filter: &nbsp;</strong>
@@ -34,7 +34,7 @@
 
     <tr *ngFor="let option of filteredOptions; let i = index;" [ngClass]="{'table-warning' : +option.exitPrice > 0 }">
       <td><strong>{{i + 1}}</strong></td>
-      <td>{{option.optionTypeDesc}}</td>
+      <td>{{option.optionType.description}}</td>
       <td>{{option.strikePrice}}</td>
       <td>{{option.expirationDate | date}}</td>
       <td>{{option.entryPrice}}</td>
@@ -44,7 +44,7 @@
       <td>{{option.closingTotalPrice | currency}}</td>
       <td class="">{{option.profitLoss | currency}}</td>
       <td nowrap>
-        <button [disabled]="+option.exitPrice > 0" class="btn btn-primary btn-sm mr-1" (click)="setSelectedOption(option, 'edit')">Edit</button>
+        <button [disabled]="+option.exitPrice > 0" class="btn btn-primary btn-sm mr-1" (click)="editOption(option.optionid)">Edit</button>
         <button class="btn btn-info btn-sm mr-1" (click)="setSelectedOption(option, 'detail')">Details</button>
         <button [disabled]="+option.exitPrice > 0" class="btn btn-danger btn-sm" (click)="confirmDelete(option.optionid)">Delete</button>
       </td>
@@ -81,11 +81,16 @@
   </div>
 </div>
 
-
+<!--
 <div *ngIf="showOptionEdit">
   <app-option-edit [OptionData]="selectedOption" (CloseEditWindow)="closeAddForm($event)"></app-option-edit>
 </div>
 
+
+<div>
+  <app-option-edit></app-option-edit>
+</div>
+-->
 <div *ngIf="showOptionAddForm">
   <app-option-add [TradeId]="trade.tradeid" (CloseAddWindow)="closeAddForm($event)"></app-option-add>
 </div>

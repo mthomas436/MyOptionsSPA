@@ -1,110 +1,104 @@
- 
-<div class="container py-3">
-    <div class="card">
-        <div class="card-header">
-            <h4 class="mb-0">Edit Option</h4>
-        </div>
-        <div class="card-body">
-            <form class="form" role="form" autocomplete="off" [formGroup]="tradeForm">
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Strike Price</label>
-                    <div class="col-lg-9">
-                        <input 
-                            [ngClass]="{'is-invalid': tradeForm.get('strikePrice').errors && tradeForm.get('strikePrice').touched}" 
-                            class="form-control" 
-                            type="text" 
-                            formControlName="strikePrice" 
-                            placeholder="Strike Price">
-                        <div class="invalid-feedback">Strike Price is required</div>                    
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Expiration Date</label>
-                    <div class="col-lg-9">
-                        <input  bsDatepicker formControlName="expirationDate"  
-                        [ngClass]="{'is-invalid': tradeForm.get('expirationDate').errors && tradeForm.get('expirationDate').touched}"  
-                                class="form-control col-6" type="text" placeholder="Expiration Date">
-                        <div class="invalid-feedback">Expiration Date is required</div> 
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Option Type</label>
-                    <div class="col-lg-9">
-                        <select
-                            [ngClass]="{'is-invalid': tradeForm.get('optionTypeId').errors && tradeForm.get('optionTypeId').touched}"  
-                            formControlName="optionTypeId" 
-                            class="form-control">
-                            <option value="1">Call</option>
-                            <option value="2">Put</option>
-                        </select>
-                        <div class="invalid-feedback">Option Type is required</div> 
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Quantity</label>
-                    <div class="col-lg-9">
-                        <input class="form-control" 
-                               [ngClass]="{'is-invalid': tradeForm.get('quantity').errors && tradeForm.get('quantity').touched}"  
-                               formControlName="quantity" type="text" placeholder="Quantity">
-                        <div class="invalid-feedback">Quantity is required</div> 
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Entry Price</label>
-                    <div class="col-lg-9">
-                        <input [ngClass]="{'is-invalid': tradeForm.get('entryPrice').errors && tradeForm.get('entryPrice').touched}" 
-                                class="form-control" formControlName="entryPrice" placeholder="Entry Price">
-                        <div *ngIf="tradeForm.get('entryPrice').hasError('required') && tradeForm.get('entryPrice').touched" 
-                             class="invalid-feedback">Entry Price is required and must be numeric</div> 
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Stock Price at Purchase</label>
-                    <div class="col-lg-9">
-                        <input [ngClass]="{'is-invalid': tradeForm.get('stockPriceatPurchace').errors && tradeForm.get('stockPriceatPurchace').touched}" 
-                                class="form-control" formControlName="stockPriceatPurchace" placeholder="Stock Price at Purchase">
-                        <div class="invalid-feedback">Stock Price at Purchase must be numeric</div> 
-                    </div>
-                </div>                
-
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Exit Price</label>
-                    <div class="col-lg-9">
-                        <input [ngClass]="{'is-invalid': tradeForm.get('exitPrice').errors && tradeForm.get('exitPrice').touched}"  
-             
-                                class="form-control" formControlName="exitPrice" placeholder="Exit Price">
-                        <div *ngIf="tradeForm.get('exitPrice').hasError('required') && tradeForm.get('exitPrice').touched" 
-                             class="invalid-feedback">Exit Price is required and must be numeric</div> 
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Commission</label>
-                    <div class="col-lg-9">
-                        <input  [ngClass]="{'is-invalid': tradeForm.get('commission').errors && tradeForm.get('commission').touched}" 
-                                class="form-control" formControlName="commission" placeholder="Commission">
-                        <input type="hidden" name="optionid" formControlName="optionid">                                                
-                        <div class="invalid-feedback">Comission should be numeric</div> 
-                    </div>
-                </div>                 
-
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label">Notes</label>
-                    <div class="col-lg-9">
-                        <textarea class="form-control" formControlName="notes" placeholder="Notes"></textarea>
-                    </div>
-                </div>                
-                <div class="form-group row">
-                    <label class="col-lg-3 col-form-label form-control-label"></label>
-                    <div class="col-lg-9">
-                        <button class="btn btn-danger mr-2" (click)="closeEditForm(false)">Cancel</button>
-                        <button class="btn btn-primary" (click)="updatePosition()">Save Changes</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>   
+<div>
+  <h1>{{option.trades.stockSymbol}} {{option.trades.dateEntered | date}}</h1>
+  <div>{{option.trades.description}}</div>
 </div>
- 
+<hr>
+<div class="container py-3">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="mb-0">Edit Option</h4>
+    </div>
+    <div class="card-body">
+      <form class="form" role="form" autocomplete="off" [formGroup]="tradeForm">
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Strike Price</label>
+          <div class="col-lg-9">
+            <input [ngClass]="{'is-invalid': tradeForm.get('strikePrice').errors && tradeForm.get('strikePrice').touched}"
+              class="form-control" type="text" formControlName="strikePrice" placeholder="Strike Price">
+            <div class="invalid-feedback">Strike Price is required</div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Expiration Date</label>
+          <div class="col-lg-9">
+            <input bsDatepicker formControlName="expirationDate" [ngClass]="{'is-invalid': tradeForm.get('expirationDate').errors && tradeForm.get('expirationDate').touched}"
+              class="form-control col-6" type="text" placeholder="Expiration Date">
+            <div class="invalid-feedback">Expiration Date is required</div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Option Type</label>
+          <div class="col-lg-9">
+            <select [ngClass]="{'is-invalid': tradeForm.get('optionTypeId').errors && tradeForm.get('optionTypeId').touched}"
+              formControlName="optionTypeId" class="form-control">
+              <option value="1">Call</option>
+              <option value="2">Put</option>
+            </select>
+            <div class="invalid-feedback">Option Type is required</div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Quantity</label>
+          <div class="col-lg-9">
+            <input class="form-control" [ngClass]="{'is-invalid': tradeForm.get('quantity').errors && tradeForm.get('quantity').touched}"
+              formControlName="quantity" type="text" placeholder="Quantity">
+            <div class="invalid-feedback">Quantity is required</div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Entry Price</label>
+          <div class="col-lg-9">
+            <input [ngClass]="{'is-invalid': tradeForm.get('entryPrice').errors && tradeForm.get('entryPrice').touched}"
+              class="form-control" formControlName="entryPrice" placeholder="Entry Price">
+            <div *ngIf="tradeForm.get('entryPrice').hasError('required') && tradeForm.get('entryPrice').touched" class="invalid-feedback">Entry
+              Price is required and must be numeric</div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Stock Price at Purchase</label>
+          <div class="col-lg-9">
+            <input [ngClass]="{'is-invalid': tradeForm.get('stockPriceatPurchace').errors && tradeForm.get('stockPriceatPurchace').touched}"
+              class="form-control" formControlName="stockPriceatPurchace" placeholder="Stock Price at Purchase">
+            <div class="invalid-feedback">Stock Price at Purchase must be numeric</div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Exit Price</label>
+          <div class="col-lg-9">
+            <input [ngClass]="{'is-invalid': tradeForm.get('exitPrice').errors && tradeForm.get('exitPrice').touched}"
+              class="form-control" formControlName="exitPrice" placeholder="Exit Price">
+            <div *ngIf="tradeForm.get('exitPrice').hasError('required') && tradeForm.get('exitPrice').touched" class="invalid-feedback">Exit
+              Price is required and must be numeric</div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Commission</label>
+          <div class="col-lg-9">
+            <input [ngClass]="{'is-invalid': tradeForm.get('commission').errors && tradeForm.get('commission').touched}"
+              class="form-control" formControlName="commission" placeholder="Commission">
+            <input type="hidden" name="optionid" formControlName="optionid">
+            <div class="invalid-feedback">Comission should be numeric</div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Notes</label>
+          <div class="col-lg-9">
+            <textarea class="form-control" formControlName="notes" placeholder="Notes"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label"></label>
+          <div class="col-lg-9">
+            <button class="btn btn-danger mr-2" (click)="closeEditForm()">Cancel</button>
+            <button class="btn btn-primary" (click)="updateOption()">Save Changes</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

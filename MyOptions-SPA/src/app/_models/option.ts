@@ -1,4 +1,6 @@
+import { Trade } from 'src/app/_models/trade';
 import { Optiontype } from './optiontype';
+
 
 export interface Option {
   optionid: number;
@@ -14,8 +16,9 @@ export interface Option {
   expDateShort: string;
   positionClosed: boolean;
   optionTypeDesc: string;
+  trades: Trade;
   stockPriceatPurchace?: number;
-  optionType?: Optiontype[];
+  optionType?: Optiontype;
   exitPrice?: number;
   commission?: number;
   dateClosed?: Date;

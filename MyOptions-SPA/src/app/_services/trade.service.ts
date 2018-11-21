@@ -45,6 +45,10 @@ export class TradeService {
   return this.http.get<Option[]>(this.baseUrl + 'options/getoptions/' + tradeid);
  }
 
+ getOption(optionid: number): Observable<Option> {
+  return this.http.get<Option>(this.baseUrl + 'options/getoption/' + optionid);
+ }
+
  addPosition(model: Option) {
    return this.http.post(this.baseUrl + 'options/addoption', model);
  }

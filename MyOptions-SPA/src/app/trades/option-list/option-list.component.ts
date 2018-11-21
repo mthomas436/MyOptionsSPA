@@ -5,7 +5,7 @@ import { TradeService } from 'src/app/_services/trade.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertComponent } from 'ngx-bootstrap';
+
 
 
 @Component({
@@ -42,6 +42,7 @@ export class OptionListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.trade = data['trade'];
     });
+ 
     this.filteredOptions = this.trade.options;
 
   }
@@ -56,6 +57,10 @@ export class OptionListComponent implements OnInit {
     if (type === 'edit') {
       this.displayOptionEdit();
     }
+  }
+
+  editOption(optionid: number) {
+    this.router.navigate(['/editoption/' + optionid]);
   }
 
   displayOptionDetail() {
@@ -96,14 +101,19 @@ export class OptionListComponent implements OnInit {
 
 
   reloadTrade() {
-    this.tradeService.getTrade(this.trade.tradeid).subscribe((trade: Trade) => {
-      this.trade = trade;
-      this.filteredOptions = trade.options;
+    this.tradeService.getTrade(this.trade.tradeid).subscribe((updatedtrade: Trade) => {
+
+      this.filteredOptions.length = 0;
+      updatedtrade.options.forEach(element => {
+        this.filteredOptions.push(element);
+      });
+
       this.displayOptionListWindow();
     }, error => {
       this.alertify.error(error);
     });
 
+    // window.location.reload();
   }
 
   confirmDelete(optionid: number) {

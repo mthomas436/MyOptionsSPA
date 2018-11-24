@@ -5,15 +5,15 @@ import { Resolve, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router
 import { Router } from '@angular/router';
 import { TradeService } from '../_services/trade.service';
 import { Observable, of } from 'rxjs';
-import { Option } from '../_models/option';
+import { User } from '../_models/user';
 
 @Injectable()
-export class OptionDetailResolver implements Resolve<Option> {
+export class MemberTradeResolver implements Resolve<User> {
   constructor(private tradeService: TradeService, private router: Router,
               private alertify: AlertifyService) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<Option> {
-    return this.tradeService.getOption(route.params['optionid']).pipe(
+  resolve(route: ActivatedRouteSnapshot): Observable<User> {
+    return this.tradeService.getMemberTrades(route.params['userid']).pipe(
       catchError(error => {
         this.alertify.error('Problem retrieving data');
         this.router.navigate(['/trades']);

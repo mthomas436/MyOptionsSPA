@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using MyOptions.API.Models;
 
 namespace MyOptions.API.Dtos
 {
@@ -11,8 +13,17 @@ namespace MyOptions.API.Dtos
         public string Email { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
+        public ICollection<Trade> Trades { get; set; }
 
         public string PhotoUrl { get; set; }
+
+        public int TotalTrades
+        {
+            get
+            {
+                return this.Trades.Count;
+            }
+        }        
         
     }
 }

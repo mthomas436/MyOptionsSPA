@@ -1,0 +1,56 @@
+<h2><span [routerLink]="['/membertrades']" class="spanlink">Member Trades</span> | {{user.firstname}}
+  {{user.lastname}}'s Trades</h2>
+
+<!-- User profile -->
+<div class="panel panel-default mt-5">
+  <div class="panel-body">
+    <div class="profile__avatar">
+      <img src="https://randomuser.me/api/portraits/men/{{user.userid}}.jpg" alt="...">
+    </div>
+    <div class="profile__header">
+      <h4>{{user.firstname}} {{user.lastname}} <!--<small>Administrator</small>--></h4>
+      <p class="text-muted">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non nostrum odio cum repellat veniam eligendi rem
+        cumque magnam autem delectus qui.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div>
+
+  <div class="mt-5" *ngIf="trades.length > 0">
+    <div class="row">
+      <div class="col"><strong>Filter: &nbsp;</strong> <input type="checkbox"> Open <input type="checkbox"> Closed</div>
+      <div class="col text-right pb-2">&nbsp;</div>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Symbol</th>
+          <th scope="col">Description</th>
+          <th scope="col">Date Opened</th>
+          <th scope="col">Date Closed</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trade of trades; let i = index;">
+          <th scope="row">{{i+1}}</th>
+          <td>{{trade.stockSymbol}}</td>
+          <td>{{trade.description}}</td>
+          <td>{{trade.dateEntered | date}} </td>
+          <td>{{trade.dateclosed | date}}</td>
+          <td>
+            <button type="button" class="btn btn-info btn-sm mr-1" [routerLink]="'/optionlist/'+trade.tradeid">View</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-5" *ngIf="trades.length === 0">
+    User has not entered any trades.
+  </div>
+</div>

@@ -1,3 +1,12 @@
-<p>
-  member-trades works!
-</p>
+<h2 class="mb-3">Member Trades</h2>
+
+<div class="card-columns mt-5">
+  <div *ngFor="let user of users" class="card" style="width:300px">
+    <img class="card-img-top" src="https://randomuser.me/api/portraits/men/{{user.userid}}.jpg" alt="Card image">
+    <div class="card-body">
+      <h4 class="card-title">{{user.firstname}} {{user.lastname}}</h4>
+      <p class="card-text">{{user.trades.length}} trades.</p>
+      <button (click)="getMemberTrades(user.userid)" class="btn btn-primary">View Trades</button>
+    </div>
+  </div>
+</div>

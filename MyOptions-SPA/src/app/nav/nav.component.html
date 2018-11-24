@@ -23,6 +23,9 @@
  
 
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
+      <span class="profile__avatar">
+          <img src="https://randomuser.me/api/portraits/men/{{userid}}.jpg">
+      </span>
       <a class="dropdown-toggle text-light" dropdownToggle>
         Welcome {{authService.decodedToken.given_name | titlecase}}
       </a>

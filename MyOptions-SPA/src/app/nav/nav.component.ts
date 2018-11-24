@@ -14,10 +14,12 @@ import { User } from '../_models/user';
 export class NavComponent implements OnInit {
   model: any = {};
   user: Observable<User>;
+  userid: number;
   constructor(public authService: AuthService, private alertify: AlertifyService,
               private router: Router, private userService: UserService) { }
 
   ngOnInit() {
+    this.userid = this.authService.getUserid();
   }
 
   login() {

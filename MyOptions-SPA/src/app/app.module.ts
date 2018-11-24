@@ -1,6 +1,6 @@
+import { MemberTradeResolver } from './_resolvers/member-trade.resolver';
 import { OptionDetailResolver } from './_resolvers/option-detail.resolver';
 import { OptionAddComponent } from './trades/option-add/option-add.component';
-import { AddTradeComponent } from './trades/add-trade/add-trade.component';
 import { OptionEditComponent } from './trades/option-edit/option-edit.component';
 import { OptionDetailComponent } from './trades/option-detail/option-detail.component';
 import { OptionListComponent } from './trades/option-list/option-list.component';
@@ -36,6 +36,7 @@ import { UserService } from './_services/user.service';
 import { TradeListComponent } from './trades/trade-list/trade-list.component';
 import { MemberTradesComponent } from './trades/member-trades/member-trades.component';
 import { DatePipe, LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { MemberTradeListComponent } from './trades/member-trade-list/member-trade-list.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -67,7 +68,8 @@ export function jwtOptionsFactory() {
       OptionListComponent,
       OptionDetailComponent,
       OptionEditComponent,
-      OptionAddComponent
+      OptionAddComponent,
+      MemberTradeListComponent
 
    ],
    imports: [
@@ -97,6 +99,7 @@ export function jwtOptionsFactory() {
       TradeDetailResolver,
       OptionDetailResolver,
       UserEditResolver,
+      MemberTradeResolver,
       DatePipe,
       {provide: LocationStrategy, useClass: HashLocationStrategy}
    ],

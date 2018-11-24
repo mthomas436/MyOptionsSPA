@@ -7,7 +7,6 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
-
 @Component({
   selector: 'app-option-list',
   templateUrl: './option-list.component.html',
@@ -24,6 +23,9 @@ export class OptionListComponent implements OnInit {
   optionSelected: boolean;
   selectedOption: Option;
   newOption: Option;
+  allowEdit: boolean;
+  currentUserId: number;
+
   constructor( private tradeService: TradeService,
     private authService: AuthService,
     private alertify: AlertifyService,
@@ -38,12 +40,17 @@ export class OptionListComponent implements OnInit {
     this.showOptionEdit = false;
     this.showOptionAddForm = false;
     this.newOption = null;
+    this.allowEdit = false;
+    this.currentUserId = this.authService.getUserid();
 
     this.route.data.subscribe(data => {
       this.trade = data['trade'];
     });
- 
+
     this.filteredOptions = this.trade.options;
+    if (this.currentUserId === this.trade.userid) {
+      this.allowEdit = true;
+    }
 
   }
 

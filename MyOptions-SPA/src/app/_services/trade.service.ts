@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Trade } from '../_models/trade';
 import { Option } from '../_models/option';
+import { User } from '../_models/user';
 
 
 @Injectable({
@@ -61,5 +62,12 @@ export class TradeService {
   return this.http.delete<Trade>(this.baseUrl + 'options/deleteoption/' + optionid);
  }
 
+ getMembers(): Observable<User[]> {
+  return this.http.get<User[]>(this.baseUrl + 'members/getmembers');
+ }
+
+ getMemberTrades(userid: null): Observable<User> {
+  return this.http.get<User>(this.baseUrl + 'members/getmembertrades/' + userid);
+ }
 
 }

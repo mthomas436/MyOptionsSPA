@@ -44,9 +44,9 @@
       <td>{{option.closingTotalPrice | currency}}</td>
       <td class="">{{option.profitLoss | currency}}</td>
       <td nowrap>
-        <button [disabled]="+option.exitPrice > 0" class="btn btn-primary btn-sm mr-1" (click)="editOption(option.optionid)">Edit</button>
+        <button [hidden]="!allowEdit" [disabled]="+option.exitPrice > 0" class="btn btn-primary btn-sm mr-1" (click)="editOption(option.optionid)">Edit</button>
         <button class="btn btn-info btn-sm mr-1" (click)="setSelectedOption(option, 'detail')">Details</button>
-        <button [disabled]="+option.exitPrice > 0" class="btn btn-danger btn-sm" (click)="confirmDelete(option.optionid)">Delete</button>
+        <button [hidden]="!allowEdit" [disabled]="+option.exitPrice > 0" class="btn btn-danger btn-sm" (click)="confirmDelete(option.optionid)">Delete</button>
       </td>
     </tr>
 

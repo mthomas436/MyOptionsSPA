@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   registerMode = true;
-  constructor() { }
+  userid: number;
+  loggedin: boolean;
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
+    this.loggedin = this.authService.loggedIn();
+    if ( !this.loggedin ) {
+      this.registerMode = true;
+    }
   }
 
   registerToggle() {

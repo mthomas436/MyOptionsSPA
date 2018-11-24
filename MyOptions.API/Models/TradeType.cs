@@ -10,6 +10,6 @@ namespace MyOptions.API.Models
         [Display(Name="Description")]
         public string Description { get; set; }
 
-        public ICollection<Trade> Trades { get; set; }   
+        //public ICollection<Trade> Trades { get; set; }   
     }
 }

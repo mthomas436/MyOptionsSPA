@@ -12,6 +12,8 @@ import { AuthGuard } from './_guards/auth.guard';
 import { TradeDetailResolver } from './_resolvers/trade-detail.resolver';
 import { MemberTradesComponent } from './trades/member-trades/member-trades.component';
 import { OptionDetailResolver } from './_resolvers/option-detail.resolver';
+import { MemberTradeResolver } from './_resolvers/member-trade.resolver';
+import { MemberTradeListComponent } from './trades/member-trade-list/member-trade-list.component';
 
 
 
@@ -24,6 +26,10 @@ export const appRoutes: Routes = [
     children: [
       { path: 'users', component: UserListComponent},
       { path: 'trades', component: TradeListComponent},
+      { path: 'membertrades/trades/:userid',
+              component: MemberTradeListComponent,
+              resolve: {user: MemberTradeResolver},
+              runGuardsAndResolvers: 'always'},
       { path: 'optionlist/:tradeid', component: OptionListComponent,
                resolve: {trade: TradeDetailResolver},
                runGuardsAndResolvers: 'always'},

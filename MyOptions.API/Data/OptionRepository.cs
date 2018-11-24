@@ -57,37 +57,5 @@ namespace MyOptions.API.Data
             return "The record has been deleted successfully.";
         }        
         
-/* 
-        public async Task<IEnumerable<Option>> GetOptions(int tradeid)
-        {
-            var option = await _context.Options
-                        .Where(t => t.Tradeid == tradeid)
-                        .Include(o => o.OptionType)
-                        .ToListAsync();
-
-            return option;
-        }
-*/
- 
-
- 
-/* 
-        public async Task<Trade> GetTrade(int tradeid)
-        {
-            var trade = await _context.Trades
-                        .Where(t => t.Tradeid == tradeid)
-                        .Include(t => t.TradeTypes)
-                        .FirstOrDefaultAsync();
-
-            return trade;
-        }
-*/
-
-/* 
-        public async Task<IEnumerable<OptionType>> getOptionTypes()
-        {
-            return await _context.OptionTypes.ToListAsync();
-        }  
-        */
     }
 }

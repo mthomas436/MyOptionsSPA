@@ -35,8 +35,6 @@ namespace MyOptions.API.Models
         public bool Active { get; set; }     
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
-
- 
  
     }
  

@@ -45,11 +45,14 @@ namespace MyOptions.API
                         Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 });
             //services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
-            services.AddAutoMapper();            
+            services.AddAutoMapper();                      
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<ITradeRepository, TradeRepository>();
             services.AddScoped<IOptionsRepository, OptionRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMemberRepository, MemberRepository>(); 
+            services.AddScoped<ITestRepository, TestRepository>();
+            
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -82,6 +85,8 @@ namespace MyOptions.API
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<ITradeRepository, TradeRepository>();
             services.AddScoped<IOptionsRepository, OptionRepository>();
+            services.AddScoped<IMemberRepository, MemberRepository>(); 
+            services.AddScoped<ITestRepository, TestRepository>();            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -123,16 +128,13 @@ namespace MyOptions.API
                 });
                 // app.UseHsts();
             }
-
-            // app.UseHttpsRedirection();
-            //app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());    
+   
             app.UseCors(builder => 
                 builder.WithOrigins("http://localhost:4200", "https://msapidev.smartercoders.com", "http://msapidev.smartercoders.com", "http://myoptionsdev.smartercoders.com/trades", "https://myoptionsdev.smartercoders.com/trades")
                   .AllowAnyOrigin()
                   .AllowAnyMethod()
                   .AllowAnyHeader());
                    
-            //app.UseCors("CORSPolicy");
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseAuthentication();

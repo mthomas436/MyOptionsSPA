@@ -74,7 +74,7 @@ namespace MyOptions.API.Controllers
         }
 
 
-        [HttpPut("updateoption",Name="UpdateOption")]
+        [HttpPost("updateoption",Name="UpdateOption")]
         public async Task<IActionResult> UpdateOption(OptionForUpdateDto optionForUpdateDto)
         {
             var optionFromDb = await _repo.GetOption(optionForUpdateDto.Optionid);

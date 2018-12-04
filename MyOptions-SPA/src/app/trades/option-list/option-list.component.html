@@ -11,7 +11,7 @@
     <input type="radio" name="optselect" value='closed' (change)="displayRows('closed', $event)"> Closed
   </div>
   <div class="col text-right pb-2">
-    <button (click)="displayOptionAdd()" class="btn btn-primary btn-sm">Add new option</button>
+    <button *ngIf="allowEdit" (click)="displayOptionAdd()" class="btn btn-primary btn-sm">Add new option</button>
   </div>
 </div>
 

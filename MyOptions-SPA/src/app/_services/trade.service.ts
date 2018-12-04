@@ -55,7 +55,7 @@ export class TradeService {
  }
 
  updatePosition(option: Option) {
-  return this.http.put<Option>(this.baseUrl + 'options/updateoption/', option);
+  return this.http.post<Option>(this.baseUrl + 'options/updateoption/', option);
  }
 
  deletePosition(optionid): Observable<Trade> {
